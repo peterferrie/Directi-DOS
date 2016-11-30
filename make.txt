@@ -1,11 +1,11 @@
 How to make your own version:
 
-Take a regular version of Diversi-DOS, and save the $BF00-BFFF and $D700-FFFF regions to disk.
-Make whatever changes you will to that image.
-Fill the following regions with zeroes in the $D700 region:
- - the read buffer at $1DBC-1FFF;
+Boot Diversi-DOS in 64kb mode, break at $DD84, and then save the $BF00-BFFF and $D700-FFFF regions to disk.
+Make whatever changes you will to those files.
+Then within the $D700 file, fill with zeroes the ranges at these file offsets:
+ - the read buffer at $1CBC-1EFF;
  - the translate tables at offsets $2329-2368 and $2396-23FF (the unpacker will regenerate them);
- - the write buffer at $2500-2655
+ - the write buffer at $2400-2555
 Concatenate the two images, with the $BF00 region first (to create a file named "d600-ffff").
 Reverse the order of the bytes in the image (to create a file named "d600-ffff.rev").
 Compress the result with aPLib ("appack c d600-ffff.rev d600-ffff.rev.pak").
