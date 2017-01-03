@@ -10,7 +10,7 @@
 !byte 1
 
         tay                     ;A is last read sector+1 on entry
-        lda     $C081           ;bank in ROM while leaving RAM write-enabled if it was before
+        lda     $C081           ;bank in ROM
 
         ;check array before checking sector number
         ;allows us to avoid a redundant seek if all slots are full in a track,
@@ -23,7 +23,7 @@ adrindex
         lda     adrtable - 1    ;15 entries in first row, 16 entries thereafter
         sta     $4FB            ;set 80-column state (final store is an #$FF to disable it)
         cmp     #$FF
-        beq     jmpoep          ;#$C0 means end of data
+        beq     jmpoep          ;#$FF means end of data
         sta     $27             ;set high part of address
 
         ;2, 4, 6, 8, $0A, $0C, $0E
@@ -57,10 +57,7 @@ setsector
         ;convert slot to PROM address
 
         txa
-        lsr
-        lsr
-        lsr
-        lsr
+        jsr     $F87B           ;4xlsr
         tay
         ora     #$C0
         pha
@@ -68,6 +65,8 @@ setsector
         pha
         lda     #2
         sta     $478, y         ;save current phase for DOS use when we exit
+
+writeenable
         lda     $C083
         lda     $C083           ;write-enable RAM and bank it in so read can decode
         rts                     ;return to PROM
@@ -98,7 +97,7 @@ jmpoep
         jsr     $FB2F           ;text mode
         sta     $C00C
         sta     $C00E           ;clear 80-column mode
-        lda     $C083           ;bank in our RAM, write-enabled
+        jsr     writeenable     ;bank in our RAM, write-enabled
         jmp     $D000           ;jump to unpacker
 
 adrtable
