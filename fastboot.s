@@ -3,6 +3,10 @@
 ;copyright (c) Peter Ferrie 2016
 ;thanks to 4am for inspiration and testing
 ;assemble using ACME
+;
+;Cleanup by Michael Pohoreski "Michaelangel007"
+;https://github.com/Michaelangel007/Directi-DOS
+
 !cpu 6502
 !to "fstbt",plain
 
