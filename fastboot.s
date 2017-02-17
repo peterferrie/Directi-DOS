@@ -155,6 +155,8 @@ jmpoep
         jmp     $D000           ;jump to unpacker
 
 adrtable
-!byte $dd,$dc,$db,$da,$d9,$d8,$d7,$d6,$d5,$d4,$d3,$d2,$d1,$d0,$de
-!byte $df,$ed,$ec,$eb,$ea,$e9,$e8,$e7,$e6,$e5,$e4,$e3,$e2,$e1,$e0,$ee
-!byte $FF ;end of list
+!byte     $dd,$dc,$db,$da,$d9,$d8,$d7 ;T0S#   2,4,6,8,A,C,E
+!byte $d6,$d5,$d4,$d3,$d2,$d1,$d0,$de ;     1,3,5,7,9,B,D,10
+!byte $df,$ed,$ec,$eb,$ea,$e9,$e8,$e7 ;T1S# 0,2,4,6,8,A,C,E
+!byte $e6,$e5,$e4,$e3,$e2,$e1,$e0,$ee ;     1,3,5,7,9,B,D,10
+!byte $FF                             ;end of list
