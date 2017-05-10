@@ -1,3 +1,4 @@
+;license:BSD-3-Clause
 ;fast boot-loader in one sector
 ;"special delivery" version for Directi-DOS
 ;copyright (c) Peter Ferrie 2016

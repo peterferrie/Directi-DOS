@@ -1,3 +1,4 @@
+;license:BSD-3-Clause
 ;aPLib data decompressor for Apple II
 ;Peter Ferrie (peter.ferrie@gmail.com)
 ;assemble using ACME
